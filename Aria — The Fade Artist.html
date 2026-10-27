@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aria — The Fade Artist · Zurich</title>
+<meta name="description" content="Aria, female barber and fade artist in Zurich, Switzerland.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#171918;--ivory:#EAE7E0;--sage:#A9BFB6;--serif:"Instrument Serif","Times New Roman",serif;--sans:"Inter Tight",system-ui,sans-serif;--pad:4vw}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background:var(--ink)}
+body{font-family:var(--sans);font-size:16px;line-height:1.5;color:var(--ivory);background:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase}
+
+/* image slots — real photos drop in via IMG config at the bottom */
+.slot{position:relative;overflow:hidden;background:#262a28;color:var(--ivory)}
+.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.slot .ph{position:absolute;left:.9rem;bottom:.8rem;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;opacity:.55}
+.slot.filled .ph{display:none}
+.light .slot{background:#d8d4ca;color:var(--ink)}
+.reveal{clip-path:inset(0 0 100% 0);transition:clip-path 1.1s cubic-bezier(.2,.7,.1,1)}
+.reveal.in{clip-path:inset(0 0 0 0)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:baseline;padding:calc(1.1rem + env(safe-area-inset-top,0px)) var(--pad) 1rem;color:var(--ivory);mix-blend-mode:difference;transition:transform .5s ease}
+nav.hide{transform:translateY(-110%)}
+.mark{font-family:var(--serif);font-size:1.7rem;letter-spacing:.08em;line-height:1}
+.mark small{font-family:var(--sans);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;margin-left:.9rem;opacity:.7}
+nav ul{display:flex;gap:1.6rem;list-style:none;align-items:baseline}
+nav a{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;position:relative;padding-bottom:2px}
+nav li:not(:last-child) a::after,nav .book::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .4s}
+nav a:hover::after,nav .book::after{transform:scaleX(1)}
+nav .book{font-style:italic;font-family:var(--serif);font-size:1.15rem;letter-spacing:0;text-transform:none}
+
+/* HERO */
+.hero{position:relative;min-height:100svh;background:var(--ink);overflow:hidden;padding:0 var(--pad)}
+.hero .slot{position:absolute;right:6vw;top:13vh;width:38vw;height:74vh}
+.hero h1{position:absolute;left:calc(var(--pad) - .04em);bottom:15vh;font-family:var(--serif);font-weight:400;font-size:31vw;line-height:.78;letter-spacing:-.02em;z-index:2;mix-blend-mode:difference;color:var(--ivory)}
+.hero .sub{position:absolute;left:var(--pad);bottom:9.5vh;font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,3.2vw,3rem);color:var(--sage);z-index:3;line-height:1}
+.hero .note{position:absolute;left:var(--pad);top:24vh;max-width:15rem;z-index:3}
+.hero .note p{margin-top:.8rem;font-size:.95rem;opacity:.8}
+.hero .go{position:absolute;left:var(--pad);right:var(--pad);bottom:calc(3vh + env(safe-area-inset-bottom,0px));display:flex;justify-content:space-between;z-index:3;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase}
+.hero .go a{border-bottom:1px solid transparent;transition:border-color .3s}.hero .go a:hover{border-color:currentColor}
+
+/* WORK */
+.work{background:var(--ivory);color:var(--ink);padding:14vh 0 12vh}
+.work header{display:flex;justify-content:space-between;align-items:flex-end;padding:0 var(--pad);margin-bottom:7vh}
+.work h2{font-family:var(--serif);font-weight:400;font-size:clamp(3.4rem,11vw,11rem);line-height:.85;letter-spacing:-.02em}
+.work h2 em{display:block;padding-left:12vw}
+.ctl{display:flex;gap:1.2rem;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;align-items:center}
+.ctl button{all:unset;cursor:pointer;font-size:1.4rem;line-height:1;padding:.2rem .4rem}
+.ctl button:focus-visible{outline:1px solid var(--ink)}
+.track{display:flex;gap:3vw;align-items:flex-start;overflow-x:auto;scroll-snap-type:x proximity;padding:0 var(--pad) 3rem;scrollbar-width:thin;scrollbar-color:var(--ink) transparent;min-height:76vh}
+.track figure{flex:none;scroll-snap-align:center;width:calc(var(--d)*1vw);margin-top:calc(var(--t)*1vw)}
+.track .slot{aspect-ratio:var(--r)}
+.track figcaption{display:flex;justify-content:space-between;margin-top:.7rem;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase}
+.track figure:nth-child(1){--d:34;--r:4/5;--t:0}
+.track figure:nth-child(2){--d:20;--r:1/1;--t:14}
+.track figure:nth-child(3){--d:30;--r:3/4;--t:3}
+.track figure:nth-child(4){--d:18;--r:4/5;--t:20}
+.track figure:nth-child(5){--d:38;--r:5/4;--t:7}
+.track figure:nth-child(6){--d:22;--r:1/1;--t:16}
+
+/* ABOUT */
+.about{position:relative;background:var(--ink);padding:16vh var(--pad);display:grid;grid-template-columns:5fr 7fr;gap:6vw;align-items:end;min-height:100svh}
+.about .slot{margin-left:calc(var(--pad)*-1);aspect-ratio:3/4;width:calc(100% + var(--pad))}
+.about h2{font-family:var(--serif);font-weight:400;font-size:clamp(3rem,8.4vw,9rem);line-height:.9;letter-spacing:-.02em;margin-left:-14vw;position:relative;z-index:2;mix-blend-mode:difference;color:var(--ivory)}
+.about h2 em{color:var(--sage)}
+.about .txt{max-width:26rem;margin:4vh 0 0 6vw}
+.about .txt p{opacity:.85;margin-bottom:1.4rem}
+.about .txt a{border-bottom:1px solid var(--sage);color:var(--sage);padding-bottom:2px}
+
+/* BOOKING */
+.booking{background:var(--ivory);color:var(--ink);padding:16vh var(--pad) 10vh}
+.booking h2{font-family:var(--serif);font-weight:400;font-size:clamp(5rem,22vw,24rem);line-height:.8;letter-spacing:-.03em;margin:3vh 0 10vh}
+.booking h2 span{display:block;padding-left:18vw}
+.booking h2 em{position:relative;z-index:0}
+.booking h2 em::after{content:"";position:absolute;left:-.04em;right:-.04em;bottom:.02em;height:.2em;background:var(--sage);z-index:-1}
+.cta{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:2rem 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);font-family:var(--serif);font-size:clamp(1.8rem,5vw,4.6rem);line-height:1;transition:background .4s,color .4s,padding .4s}
+.cta:hover,.cta:focus-visible{background:var(--ink);color:var(--ivory);padding:2rem 2vw;outline:none}
+.cta i{font-style:normal;transition:transform .4s}.cta:hover i{transform:translateX(.4em)}
+.booking .meta{display:flex;justify-content:space-between;margin-top:1.4rem}
+
+/* FOOTER */
+footer{background:var(--ink);padding:10vh var(--pad) 0;overflow:hidden}
+footer .row{display:flex;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+footer a{border-bottom:1px solid transparent}footer a:hover{border-color:currentColor}
+footer .big{font-family:var(--serif);font-size:42vw;line-height:.74;color:var(--sage);letter-spacing:-.02em;margin:6vh 0 -.12em -.04em;white-space:nowrap}
+
+@media (max-width:800px){
+ :root{--pad:5vw}
+ nav ul{gap:1rem}.mark small{display:none}
+ nav li:nth-child(1),nav li:nth-child(2){display:none}
+ .hero .slot{right:0;top:11vh;width:74vw;height:58svh}
+ .hero h1{font-size:40vw;bottom:19vh}
+ .hero .sub{bottom:13vh}
+ .hero .note{top:auto;bottom:calc(3vh + 4.5rem);display:none}
+ .work header{flex-direction:column;align-items:flex-start;gap:1.5rem}
+ .work h2 em{padding-left:8vw}
+ .track{gap:5vw}
+ .track figure{width:calc(var(--m)*1vw);margin-top:calc(var(--t)*.5vw)}
+ .track figure:nth-child(1){--m:76}.track figure:nth-child(2){--m:54}.track figure:nth-child(3){--m:72}
+ .track figure:nth-child(4){--m:50}.track figure:nth-child(5){--m:86}.track figure:nth-child(6){--m:56}
+ .about{grid-template-columns:1fr;align-items:start;gap:0;padding-top:12vh}
+ .about .slot{width:82%;margin-left:calc(var(--pad)*-1)}
+ .about h2{margin:-9vw 0 0 12vw;font-size:15vw}
+ .about .txt{margin:4vh 0 0}
+ .booking h2 span{padding-left:6vw}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.reveal{clip-path:none}}
+</style>
+</head>
+<body>
+
+<nav id="nav" aria-label="Main">
+  <a class="mark" href="#top" aria-label="Aria — home">ARIA<small>Zurich · 47.37°N 8.54°E</small></a>
+  <ul>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#booking">Booking</a></li>
+    <li><a class="book" href="#booking">Book</a></li>
+  </ul>
+</nav>
+
+<main id="top">
+<section class="hero" aria-label="Aria, The Fade Artist">
+  <div class="note"><span class="eyebrow">Zurich, Switzerland.</span><p>Precision in every cut. Character in every detail.</p></div>
+  <div class="slot reveal" data-slot="hero" data-alt="Aria at work in her Zurich studio"><span class="ph">Hero — Aria cutting, or a finished side profile</span></div>
+  <h1>ARIA</h1>
+  <p class="sub">The Fade Artist.</p>
+  <div class="go"><a href="#work">See the work ↓</a><a href="#booking">Book</a></div>
+</section>
+
+<section class="work light" id="work" aria-label="Selected work">
+  <header>
+    <h2>Selected<em>Work</em></h2>
+    <div class="ctl"><span>06 frames</span><button id="prev" aria-label="Previous">←</button><button id="next" aria-label="Next">→</button></div>
+  </header>
+  <div class="track" id="track" tabindex="0" aria-label="Haircut photographs, scroll horizontally">
+    <figure><div class="slot reveal" data-slot="w0" data-alt="Finished fade, side profile"><span class="ph">Finished cut — side profile</span></div><figcaption><span>01</span><span>Finished cut</span></figcaption></figure>
+    <figure><div class="slot reveal" data-slot="w1" data-alt="Close-up detail of a fade"><span class="ph">Detail — fade close-up</span></div><figcaption><span>02</span><span>Detail</span></figcaption></figure>
+    <figure><div class="slot reveal" data-slot="w2" data-alt="Finished cut, back view"><span class="ph">Finished cut — back</span></div><figcaption><span>03</span><span>Finished cut</span></figcaption></figure>
+    <figure><div class="slot reveal" data-slot="w3" data-alt="Close-up detail of a taper"><span class="ph">Detail — taper</span></div><figcaption><span>04</span><span>Detail</span></figcaption></figure>
+    <figure><div class="slot reveal" data-slot="w4" data-alt="Aria cutting a client's hair"><span class="ph">Working — Aria at the chair</span></div><figcaption><span>05</span><span>At work</span></figcaption></figure>
+    <figure><div class="slot reveal" data-slot="w5" data-alt="Styled finish"><span class="ph">Detail — styled finish</span></div><figcaption><span>06</span><span>Detail</span></figcaption></figure>
+  </div>
+</section>
+
+<section class="about" id="about" aria-label="About Aria">
+  <div class="slot reveal" data-slot="about" data-alt="Portrait of Aria"><span class="ph">Portrait — Aria</span></div>
+  <div>
+    <h2>The artist<br><em>behind</em><br>the clippers.</h2>
+    <div class="txt">
+      <p>Aria is a female barber and fade artist working in Zurich, Switzerland. Her craft is fades, tapers and textured cuts, finished by hand.</p>
+      <p>The work is documented on Instagram.</p>
+      <a href="https://www.instagram.com/aria_thebarber/" rel="noopener" target="_blank">@aria_thebarber ↗</a>
+    </div>
+  </div>
+</section>
+
+<section class="booking light" id="booking" aria-label="Booking and contact">
+  <span class="eyebrow">Booking</span>
+  <h2><span>Book</span><span>a <em>cut.</em></span></h2>
+  <a class="cta" id="cta" href="https://www.instagram.com/aria_thebarber/" rel="noopener" target="_blank"><span>Message Aria on Instagram</span><i>→</i></a>
+  <div class="meta eyebrow"><span>@aria_thebarber</span><span>Zurich, Switzerland</span></div>
+</section>
+</main>
+
+<footer>
+  <div class="row eyebrow">
+    <span>Aria — The Fade Artist</span>
+    <span>Zurich, Switzerland</span>
+    <a href="https://www.instagram.com/aria_thebarber/" rel="noopener" target="_blank">Instagram</a>
+    <a href="#booking">Book</a>
+  </div>
+  <div class="big" aria-hidden="true">ARIA</div>
+</footer>
+
+<script>
+// Add real photo paths here (relative or data: URIs). Empty = labelled placeholder.
+var IMG={hero:"",about:"",w0:"",w1:"",w2:"",w3:"",w4:"",w5:""};
+// Set once a verified booking URL exists; the CTA copy should change with it.
+var BOOKING_URL="";
+
+document.querySelectorAll(".slot[data-slot]").forEach(function(s,i){
+  var src=IMG[s.dataset.slot];
+  if(src){var im=new Image();im.alt=s.dataset.alt||"";im.decoding="async";
+    if(s.dataset.slot!=="hero")im.loading="lazy";
+    else im.fetchPriority="high";
+    im.src=src;s.appendChild(im);s.classList.add("filled");}
+});
+if(BOOKING_URL){var c=document.getElementById("cta");c.href=BOOKING_URL;c.firstElementChild.textContent="Book your appointment";}
+
+// reveals
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}})},{threshold:.15});
+document.querySelectorAll(".reveal").forEach(function(el){io.observe(el)});
+
+// nav hides on scroll down, returns on scroll up
+var nav=document.getElementById("nav"),ly=0;
+addEventListener("scroll",function(){var y=scrollY;nav.classList.toggle("hide",y>ly&&y>120);ly=y},{passive:true});
+
+// portfolio arrows
+var t=document.getElementById("track");
+function step(d){t.scrollBy({left:d*t.clientWidth*.6,behavior:"smooth"})}
+document.getElementById("prev").onclick=function(){step(-1)};
+document.getElementById("next").onclick=function(){step(1)};
+t.addEventListener("keydown",function(e){if(e.key==="ArrowRight")step(1);if(e.key==="ArrowLeft")step(-1)});
+</script>
+</body>
+</html>
