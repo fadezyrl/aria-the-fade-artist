@@ -75,7 +75,7 @@ export const site = {
   ],
   media: {
     hero: {
-      src: "/assets/videos/reel-01.mp4",
+      src: "/assets/videos/hero.mp4",
       type: "video",
     },
     about: {
