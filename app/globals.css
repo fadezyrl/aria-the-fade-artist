@@ -1,26 +1,66 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ink: #171918;
+  --ivory: #eae7e0;
+  --sage: #a9bfb6;
+  --slot: #262a28;
+  --slot-light: #d8d4ca;
+  --pad: 4vw;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: var(--ink);
+  --color-ivory: var(--ivory);
+  --color-sage: var(--sage);
+  --color-slot: var(--slot);
+  --color-slot-light: var(--slot-light);
+  --font-serif: var(--font-instrument);
+  --font-sans: var(--font-inter-tight);
+  --spacing-pad: var(--pad);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (max-width: 800px) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --pad: 5vw;
   }
 }
 
+html {
+  scroll-behavior: smooth;
+  background: var(--ink);
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  color: var(--ivory);
+  background: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Clip-path reveal — not expressible as a single Tailwind utility */
+.reveal {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1.1s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
+.reveal.in {
+  clip-path: inset(0 0 0 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+
+  .reveal {
+    clip-path: none;
+  }
 }
