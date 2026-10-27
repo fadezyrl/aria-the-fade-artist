@@ -19,10 +19,10 @@ export function Work() {
   return (
     <section
       id="work"
-      className="bg-ivory py-[14vh] pb-[12vh] text-ink"
+      className="bg-ivory py-[14vh] pb-[12vh] text-ink max-[800px]:py-16 max-[800px]:pb-12"
       aria-label="Selected work"
     >
-      <header className="mb-[7vh] flex items-end justify-between px-pad max-[800px]:flex-col max-[800px]:items-start max-[800px]:gap-6">
+      <header className="mb-[7vh] flex items-end justify-between px-pad max-[800px]:mb-8 max-[800px]:flex-col max-[800px]:items-start max-[800px]:gap-4">
         <h2 className="font-serif text-[clamp(3.4rem,11vw,11rem)] font-normal leading-[0.85] tracking-[-0.02em]">
           Selected
           <em className="block pl-[12vw] not-italic max-[800px]:pl-[8vw]">
@@ -58,7 +58,7 @@ export function Work() {
           if (e.key === "ArrowRight") step(1);
           if (e.key === "ArrowLeft") step(-1);
         }}
-        className="flex min-h-[76vh] snap-x snap-proximity items-start gap-[3vw] overflow-x-auto px-pad pb-12 [scrollbar-color:var(--ink)_transparent] [scrollbar-width:thin] max-[800px]:gap-[5vw]"
+        className="flex min-h-[76vh] snap-x snap-proximity items-start gap-[3vw] overflow-x-auto px-pad pb-12 [scrollbar-color:var(--ink)_transparent] [scrollbar-width:thin] max-[800px]:min-h-0 max-[800px]:gap-[5vw] max-[800px]:pb-2"
       >
         {site.work.map((item, index) => {
           const figureStyle = {
@@ -71,7 +71,7 @@ export function Work() {
             <figure
               key={item.id}
               style={figureStyle}
-              className="mt-[calc(var(--t)*1vw)] w-[calc(var(--d)*1vw)] shrink-0 snap-center max-[800px]:mt-[calc(var(--t)*0.5vw)] max-[800px]:w-[calc(var(--m)*1vw)]"
+              className="mt-[calc(var(--t)*1vw)] w-[calc(var(--d)*1vw)] shrink-0 snap-center max-[800px]:mt-0 max-[800px]:w-[calc(var(--m)*1vw)]"
             >
               <ImageSlot
                 slot={item.id}

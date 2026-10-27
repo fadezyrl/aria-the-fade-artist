@@ -17,7 +17,7 @@ export const site = {
     url: "https://www.instagram.com/aria_thebarber/",
   },
   /** Set once a verified booking URL exists; CTA copy updates with it. */
-  bookingUrl: "" as string,
+  bookingUrl: "https://book.tsekhairstudio.com/book" as string,
   hero: {
     note: "Precision in every cut. Character in every detail.",
     alt: "Aria at work in her Zurich studio",
@@ -51,16 +51,6 @@ export const site = {
       mobileWidth: 54,
       ratio: "1/1",
       offset: 14,
-    },
-    {
-      id: "w2",
-      label: "Portrait",
-      alt: "Portrait of Aria",
-      placeholder: "Portrait — Aria",
-      width: 30,
-      mobileWidth: 72,
-      ratio: "3/4",
-      offset: 3,
     },
     {
       id: "w3",
@@ -99,10 +89,6 @@ export const site = {
     w1: {
       src: "/assets/videos/reel-03.mp4",
       type: "video",
-    },
-    w2: {
-      src: "/assets/images/portrait.jpg",
-      type: "image",
     },
     w3: {
       src: "/assets/videos/face-treatment.mp4",

@@ -1,12 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { site } from "@/lib/site";
 
 const links = [
   { href: "#work", label: "Work", hideOnMobile: true },
   { href: "#about", label: "About", hideOnMobile: true },
-  { href: "#booking", label: "Booking", hideOnMobile: false },
 ];
 
 export function Nav() {
@@ -41,9 +39,6 @@ export function Nav() {
         className="font-serif text-[1.7rem] tracking-[0.08em] leading-none"
       >
         ARIA
-        <small className="ml-[0.9rem] hidden font-sans text-[0.62rem] tracking-[0.16em] uppercase opacity-70 min-[801px]:inline">
-          {site.coords}
-        </small>
       </a>
 
       <ul className="flex list-none items-baseline gap-4 min-[801px]:gap-[1.6rem]">
